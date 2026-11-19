@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jhilimili – Where Light Meets Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Mukta:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#2B0A55; --berry:#8E1A6E; --pink:#E5195E; --orange:#FF7A1A; --mari:#FFB400; --gold:#FFE08A; --ivory:#FFF6E5; --teal:#0F5C6B;
+  --muted:#E3CDEB;
+  --display:"Yatra One","Noto Serif Devanagari",Georgia,serif;
+  --body:"Mukta","Noto Sans Devanagari",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--plum);color:var(--ivory);font-family:var(--body);font-size:1.125rem;line-height:1.65;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.15}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 1.25rem}
+p{max-width:62ch}
+section{padding:5rem 0}
+h2{font-size:clamp(2rem,6vw,3.2rem);margin-bottom:1rem}
+.lead{color:var(--muted);margin-bottom:2rem}
+.btn{background:var(--mari);color:var(--plum);border:0;border-radius:999px;padding:.8rem 1.8rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
+.btn:hover{background:var(--gold);transform:translateY(-2px)}
+.btn.ghost{background:none;color:var(--gold);border:2px solid var(--gold)}
+.btn.ghost:hover{background:rgba(255,224,138,.15)}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 1.25rem 3rem;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 115%,var(--orange) 0%,var(--pink) 28%,var(--berry) 55%,var(--plum) 90%)}
+.hero>*{position:relative;z-index:1}
+.hero .np{font-family:var(--display);color:var(--gold);font-size:clamp(1.4rem,4vw,2rem)}
+.hero h1{font-size:clamp(2.8rem,10vw,7rem);color:var(--ivory);text-shadow:0 0 50px rgba(255,180,0,.55);max-width:12ch;margin:.4rem 0}
+.hero .sub{color:var(--ivory);margin:.8rem auto 1.8rem;opacity:.92}
+.lights{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.light{position:absolute;bottom:-12px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px 4px rgba(255,224,138,.65);animation:float linear infinite;opacity:0}
+.light.once{animation-iteration-count:1;animation-fill-mode:forwards}
+@keyframes float{0%{transform:translate(0,0);opacity:0}10%{opacity:.95}80%{opacity:.6}100%{transform:translate(var(--dx),-108vh);opacity:0}}
+.diyas{display:flex;gap:clamp(.3rem,2.5vw,1.4rem);justify-content:center;margin-bottom:.3rem}
+.diya{background:none;border:0;cursor:pointer;width:clamp(54px,14vw,90px);padding:0;display:flex;flex-direction:column;align-items:center}
+.diya svg{width:100%;height:auto;overflow:visible}
+.bowl{fill:#7a3a1c;transition:fill .5s}.rim{fill:#4f230f}.wick{fill:#1d1008}
+.flame{fill:var(--gold);opacity:0;transform-origin:50px 40px;transform:scale(.2);transition:opacity .5s,transform .5s}
+.glow{opacity:0;transition:opacity .6s}
+.diya.lit .flame{opacity:1;transform:scale(1);animation:flick 1.6s ease-in-out infinite}
+.diya.lit .glow{opacity:1}.diya.lit .bowl{fill:#e08a2e}
+.diya small{font-size:.8rem;color:var(--muted);margin-top:.2rem}.diya.lit small{color:var(--gold)}
+@keyframes flick{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.08,.94) rotate(2deg)}}
+#status{color:var(--gold);min-height:1.8em;font-family:var(--display);margin:.4rem 0 1.4rem}
+
+/* INTRO */
+.intro{background:var(--plum)}
+.intro p{margin-bottom:1rem}
+.strip{height:34px;margin-bottom:2.5rem;background:radial-gradient(circle,var(--mari) 28%,transparent 30%) 0 0/34px 34px,radial-gradient(circle,var(--pink) 24%,transparent 26%) 17px 17px/34px 34px}
+
+/* TIHAR CARDS */
+.tihar{background:linear-gradient(var(--plum),var(--berry))}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem}
+.card{text-align:left;border:2px solid rgba(255,246,229,.35);border-radius:18px;padding:1.3rem 1.1rem;cursor:pointer;transition:transform .3s,border-color .3s,box-shadow .3s;display:flex;flex-direction:column;background:var(--c)}
+.card:nth-child(1){--c:#C2185B}.card:nth-child(2){--c:#BF360C}.card:nth-child(3){--c:#6A1B9A}.card:nth-child(4){--c:#00796B}.card:nth-child(5){--c:#AD1457}
+.card:hover,.card[aria-expanded=true]{transform:translateY(-6px) rotate(-.6deg);border-color:var(--gold);box-shadow:0 14px 30px rgba(0,0,0,.4)}
+.card .np{font-family:var(--display);font-size:2rem;color:var(--gold);line-height:1.1}
+.card h3{font-size:1.15rem;margin-top:.5rem}
+.card .tag{color:var(--ivory);opacity:.85;font-size:.9rem}
+.card .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s}
+.card:hover .more,.card[aria-expanded=true] .more{grid-template-rows:1fr}
+.card .more>p{overflow:hidden;font-size:.95rem}
+.card .more>p::before{content:"";display:block;height:.7rem}
+
+/* CHHATH */
+.chhath{background:linear-gradient(var(--sky1,#FF6B35),var(--sky2,#7B2CBF));transition:background .15s}
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0 2.5rem;counter-reset:s}
+.steps li{counter-increment:s;padding:1rem 1rem 1rem 3.2rem;position:relative;border-left:3px solid var(--mari);background:rgba(43,10,85,.6);border-radius:0 12px 12px 0;font-size:.98rem}
+.steps li::before{content:counter(s);position:absolute;left:.8rem;top:.9rem;font-family:var(--display);color:var(--mari);font-size:1.5rem}
+.steps b{display:block;color:var(--gold);font-weight:600}
+.scene{position:relative;height:260px;margin:1rem 0 1.2rem;border-radius:16px;overflow:hidden;background:linear-gradient(var(--sky1,#FF6B35),var(--sky2,#7B2CBF));border:2px solid rgba(255,246,229,.4)}
+.sun{position:absolute;width:64px;height:64px;border-radius:50%;background:var(--sunc,#FFE08A);box-shadow:0 0 60px 20px var(--sung,rgba(255,180,0,.5));left:0;top:0}
+.water{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(rgba(255,246,229,.2),rgba(20,6,45,.92))}
+.devotee{position:absolute;bottom:26%;left:50%;transform:translateX(-50%);width:34px;height:70px}
+input[type=range]{width:100%;accent-color:var(--mari);height:2rem}
+.hint{color:var(--muted);font-size:.95rem}
+#phase{font-family:var(--display);font-size:1.5rem;color:var(--gold);margin-top:.5rem}
+#phasetxt{min-height:5.2em}
+
+/* PLAY */
+.play{background:linear-gradient(var(--teal),#0A3B52)}
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;align-items:start;margin-top:2.5rem}
+.panel h3{font-size:1.6rem;color:var(--gold);margin-bottom:.4rem}
+.pal{display:flex;gap:.5rem;margin:.8rem 0}
+.sw{width:36px;height:36px;border-radius:50%;border:3px solid transparent;cursor:pointer}
+.sw[aria-pressed=true]{border-color:var(--ivory);transform:scale(1.12)}
+.rg{display:grid;grid-template-columns:repeat(11,1fr);gap:3px;width:min(100%,350px);padding:10px;border-radius:18px;background:rgba(10,20,40,.5);border:1px solid rgba(255,224,138,.4)}
+.rg button{aspect-ratio:1;border-radius:50%;border:0;background:rgba(255,246,229,.12);cursor:pointer;padding:0;transition:transform .15s}
+.rg button:hover{transform:scale(1.2)}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
+.row input{padding:.7rem 1rem;border-radius:999px;border:2px solid var(--muted);background:#0A2A40;min-width:200px;flex:1}
+#card{margin-top:1.2rem;padding:1.6rem 1.4rem;border-radius:16px;border:2px dashed var(--mari);background:radial-gradient(circle at 50% 0,var(--pink),var(--berry));display:none}
+#card.show{display:block;animation:pop .5s}
+#card h4{font-family:var(--display);font-weight:400;font-size:1.6rem;color:var(--gold);margin-bottom:.4rem}
+.tikas{display:flex;gap:.4rem;margin-top:1rem}.tikas i{width:16px;height:16px;border-radius:50%}
+@keyframes pop{from{transform:scale(.92);opacity:0}}
+.river{position:relative;height:120px;border-radius:14px;overflow:hidden;background:linear-gradient(#123A66,#07132B);border:1px solid rgba(255,224,138,.4);margin-bottom:.8rem}
+.fd{position:absolute;left:-50px;width:36px;height:16px;border-radius:0 0 36px 36px;background:var(--mari);animation:drift 10s linear forwards,bob 1.4s ease-in-out infinite;box-shadow:0 0 18px 6px rgba(255,180,0,.55)}
+.fd::after{content:"";position:absolute;left:14px;top:-14px;width:8px;height:14px;border-radius:50% 50% 50% 50%/70% 70% 30% 30%;background:var(--gold)}
+@keyframes drift{to{left:100%}}
+@keyframes bob{50%{margin-top:5px}}
+
+/* CLOSING */
+.close{text-align:center;background:linear-gradient(var(--berry),var(--pink) 80%,var(--orange));padding:6rem 0}
+.close blockquote{font-family:var(--display);font-size:clamp(1.6rem,5vw,2.8rem);color:var(--ivory);max-width:22ch;margin:0 auto 1.5rem;line-height:1.3;text-shadow:0 2px 20px rgba(43,10,85,.5)}
+.close p{margin:0 auto 2rem}
+.close .btn.ghost{color:var(--ivory);border-color:var(--ivory)}
+footer{background:var(--plum);padding:2.5rem 1.25rem;text-align:center;color:var(--muted);font-size:.95rem}
+footer b{color:var(--gold);font-weight:600}
+#toTop{position:fixed;right:1.2rem;bottom:1.2rem;width:48px;height:48px;border-radius:50%;border:0;background:var(--mari);color:var(--plum);font-size:1.4rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
+#toTop.on{opacity:1;pointer-events:auto}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.light{display:none}.diya.lit .flame,#card.show,.fd{animation:none}.fd{left:40%}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="home">
+  <div class="lights" id="lights" aria-hidden="true"></div>
+  <p class="np" lang="ne">झिलिमिली</p>
+  <h1>Where Light Meets Life.</h1>
+  <p class="sub">Five nights of Tihar. One dawn of Chhath. Light the five diyas to begin.</p>
+  <div class="diyas" id="diyas"></div>
+  <p id="status" role="status" aria-live="polite">Tap a diya to light it.</p>
+  <a class="btn" href="#intro">Explore the celebrations</a>
+</header>
+
+<main>
+<section class="intro" id="intro">
+  <div class="wrap">
+    <div class="strip" aria-hidden="true"></div>
+    <h2>The festival where everyone gets a turn</h2>
+    <p>Tihar is Nepal’s festival of lights. For five days it honours crows, dogs, cows, oxen and finally brothers, so every being that keeps a home alive gets a tika, a garland and a lamp.</p>
+    <p>Only days later, along the rivers of the Terai, families stand waist-deep in water and offer thanks to the sun. Fire lights the first festival. The sun closes the second.</p>
+  </div>
+</section>
+
+<section class="tihar" id="tihar">
+  <div class="wrap">
+    <h2>Discover Tihar</h2>
+    <p class="lead">Five days, five thank-yous. Hover or tap a card to read the story.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<section class="chhath" id="chhath">
+  <div class="wrap">
+    <h2>Discover Chhath</h2>
+    <p>Chhath honours Surya, the sun, and Chhathi Maiya. Families, especially across the Terai, stand in rivers and ponds to give thanks for life, health and harvest. It lasts four days.</p>
+    <ol class="steps">
+      <li><b>Nahay Khay</b>Bathing, cleaning the home and eating one pure meal.</li>
+      <li><b>Kharna</b>A day-long fast, broken at dusk with kheer and roti.</li>
+      <li><b>Sandhya Arghya</b>The offering to the setting sun at the ghat.</li>
+      <li><b>Usha Arghya</b>The offering to the rising sun, then the fast ends.</li>
+    </ol>
+    <div class="scene" id="scene" role="img" aria-label="A devotee standing in water as the sun moves across the sky">
+      <div class="sun" id="sun"></div><div class="water"></div>
+      <svg class="devotee" viewBox="0 0 34 70" aria-hidden="true"><circle cx="17" cy="10" r="8" fill="#1a0d2e"/><path d="M6 70 L10 24 Q17 18 24 24 L28 70Z" fill="#FFB400"/></svg>
+    </div>
+    <label for="slider" class="hint">Drag to move the sun from evening to morning</label>
+    <input type="range" id="slider" min="0" max="100" value="0">
+    <h3 id="phase"></h3>
+    <p id="phasetxt"></p>
+  </div>
+</section>
+
+<section class="play" id="play">
+  <div class="wrap">
+    <h2>Make your own festival</h2>
+    <p class="lead">Draw a rangoli, float a diya and send a wish.</p>
+    <div class="panel">
+      <div>
+        <h3>Draw a rangoli</h3>
+        <p class="hint">Each tap paints four mirrored dots.</p>
+        <div class="pal" id="pal" role="group" aria-label="Colours"></div>
+        <div class="rg" id="rg"></div>
+        <div class="row"><button class="btn ghost" id="clear">Clear rangoli</button></div>
+      </div>
+      <div>
+        <h3>Float a diya</h3>
+        <p class="hint">Send a light down the river.</p>
+        <div class="river" id="river" aria-hidden="true"></div>
+        <button class="btn" id="float">Float a diya</button>
+      </div>
+      <div>
+        <h3>Send a tika wish</h3>
+        <p class="hint">Bhai Tika ends Tihar with seven colours on the forehead.</p>
+        <div class="row">
+          <label for="name" style="position:absolute;left:-9999px">Their name</label>
+          <input id="name" maxlength="30" placeholder="Their name" autocomplete="off">
+          <button class="btn" id="make">Make a wish card</button>
+        </div>
+        <div id="card" aria-live="polite"><h4 id="cn"></h4><p id="cm"></p><div class="tikas" id="tk" aria-hidden="true"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <blockquote>A single flame loses nothing by lighting another.</blockquote>
+    <p>Tihar and Chhath ask the same thing of us: notice what keeps you alive, say thank you, and share the light.</p>
+    <a class="btn ghost" href="#home">Back to the beginning</a>
+  </div>
+</section>
+</main>
+<footer>
+  <p><b>Jhilimili</b>, a Tihar and Chhath microsite.</p>
+  <p>Designed and built by YOUR NAME for the Tihar &amp; Chhath Web Challenge, 2026. Shubha Tihar, Shubha Chhath.</p>
+</footer>
+<button id="toTop" aria-label="Back to top">&uarr;</button>
+
+<script>
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+// ---- Floating lights
+function lights(n,once){
+  for(let i=0;i<n;i++){
+    const s=document.createElement('span');s.className='light'+(once?' once':'');
+    const z=3+Math.random()*6;
+    s.style.cssText=`left:${Math.random()*100}%;width:${z}px;height:${z}px;--dx:${Math.random()*100-50}px;animation-duration:${8+Math.random()*10}s;animation-delay:${Math.random()*(once?2:12)}s`;
+    $('lights').appendChild(s);
+  }
+}
+if(!reduce)lights(28,false);
+
+// ---- Hero diyas
+const names=["Kaag","Kukur","Gai","Goru","Bhai"];let lit=0;
+names.forEach((n,i)=>{
+  const b=document.createElement('button');b.className='diya';b.setAttribute('aria-pressed','false');b.setAttribute('aria-label','Light the '+n+' diya');
+  b.innerHTML=`<svg viewBox="0 0 100 80"><defs><radialGradient id="g${i}"><stop offset="0" stop-color="#FFE08A" stop-opacity=".7"/><stop offset="1" stop-color="#FFE08A" stop-opacity="0"/></radialGradient></defs><circle class="glow" cx="50" cy="38" r="44" fill="url(#g${i})"/><path class="flame" d="M50 8 C62 22 62 36 50 40 C38 36 38 22 50 8Z"/><rect class="wick" x="48" y="36" width="4" height="8"/><path class="bowl" d="M8 44 Q50 90 92 44 Q50 52 8 44Z"/><ellipse class="rim" cx="50" cy="44" rx="42" ry="5"/></svg><small>${n}</small>`;
+  b.onclick=()=>{
+    if(b.classList.contains('lit'))return;
+    b.classList.add('lit');b.setAttribute('aria-pressed','true');lit++;
+    $('status').textContent=lit<5?lit+' of 5 lit.':'Shubha Tihar! The whole sky is glowing.';
+    if(lit===5&&!reduce)lights(50,true);
+  };
+  $('diyas').appendChild(b);
+});
+
+// ---- Tihar cards
+const days=[
+ ["काग","Kaag Tihar","Day of the crow","Crows are seen as messengers. Families scatter food on rooftops and in yards so the birds, and the news they carry, arrive kindly."],
+ ["कुकुर","Kukur Tihar","Day of the dog","Dogs, the guardians of the home, receive a flower garland, a red tika and a good meal. For one day every street dog is family."],
+ ["गाई र लक्ष्मी","Gai Tihar and Laxmi Puja","Cow and the goddess of wealth","Cows are honoured in the morning. At dusk, homes are cleaned, rangoli fills the doorway and rows of lamps invite Laxmi in. It is the brightest night."],
+ ["गोरु","Goru Puja and Mha Puja","Ox and the Newar New Year","Oxen that plough the fields are thanked. The Newar community also holds Mha Puja, honouring one’s own body and spirit, and begins its new year."],
+ ["भाइटीका","Bhai Tika","Brothers and sisters","Sisters draw an oil line around their brothers and apply a seven-coloured tika, then offer sweets and garlands. Brothers return gifts, and the makhmali garland is said to last as long as the bond."]
+];
+days.forEach(d=>{
+  const b=document.createElement('button');b.className='card';b.setAttribute('aria-expanded','false');
+  b.innerHTML=`<span class="np" lang="ne">${d[0]}</span><h3>${d[1]}</h3><span class="tag">${d[2]}</span><span class="more"><p>${d[3]}</p></span>`;
+  b.onclick=()=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true');
+  $('cards').appendChild(b);
+});
+
+// ---- Chhath sun
+const slider=$('slider'),sun=$('sun'),scene=$('scene'),chh=$('chhath');
+const phases=[
+ [0,"Sandhya Arghya, the evening offering","As the sun sinks, families gather at the ghat with bamboo baskets of fruit, thekua and sugarcane, and offer arghya to the setting sun."],
+ [35,"Night by the water","Songs are sung and lamps float on the river while the fast continues, without even a sip of water."],
+ [65,"The cold hour before dawn","The vrati return to the water in the dark and wait. This is the longest part of the fast."],
+ [85,"Usha Arghya, the morning offering","As the sun rises, the second arghya is offered. The fast breaks with prasad shared with everyone present."]
+];
+const stops=[[0,"#FF6B35","#7B2CBF","#FFE08A","rgba(255,150,40,.6)"],[35,"#1A0B3B","#0B0620","#FFF6E5","rgba(220,210,255,.3)"],[70,"#3C1A6E","#C2185B","#FFE08A","rgba(255,200,120,.35)"],[100,"#FFB400","#E5195E","#FFF6E5","rgba(255,224,138,.7)"]];
+function mix(a,b,t){const p=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16)),x=p(a),y=p(b);return '#'+x.map((v,i)=>Math.round(v+(y[i]-v)*t).toString(16).padStart(2,'0')).join('')}
+function updateSun(){
+  const v=+slider.value;let a=stops[0],b=stops[1];
+  for(let i=0;i<3;i++)if(v>=stops[i][0]){a=stops[i];b=stops[i+1]}
+  const t=Math.min(1,Math.max(0,(v-a[0])/(b[0]-a[0])));
+  [scene,chh].forEach(e=>{e.style.setProperty('--sky1',mix(a[1],b[1],t));e.style.setProperty('--sky2',mix(a[2],b[2],t))});
+  scene.style.setProperty('--sunc',mix(a[3],b[3],t));scene.style.setProperty('--sung',t<.5?a[4]:b[4]);
+  const w=scene.clientWidth-64,h=scene.clientHeight;let x,y;
+  if(v<=35){x=w*.15+w*.25*(v/35);y=h*.25+h*.7*(v/35)}
+  else if(v<65){x=w*.4;y=h*1.2}
+  else{const r=(v-65)/35;x=w*.6+w*.25*r;y=h*.95-h*.7*r}
+  sun.style.transform=`translate(${x}px,${y}px)`;
+  let ph=phases[0];phases.forEach(p=>{if(v>=p[0])ph=p});
+  $('phase').textContent=ph[1];$('phasetxt').textContent=ph[2];
+}
+slider.addEventListener('input',updateSun);addEventListener('resize',updateSun);updateSun();
+
+// ---- Rangoli (4-way mirror, 11x11)
+const cols=["#FFE08A","#FFB400","#FF4F8B","#7DF9E0"];let cur=cols[0];
+cols.forEach((c,i)=>{
+  const s=document.createElement('button');s.className='sw';s.style.background=c;s.setAttribute('aria-label','Colour '+(i+1));s.setAttribute('aria-pressed',i===0);
+  s.onclick=()=>{cur=c;document.querySelectorAll('.sw').forEach(x=>x.setAttribute('aria-pressed',x===s))};
+  $('pal').appendChild(s);
+});
+const N=11,cells=[];
+for(let r=0;r<N;r++)for(let c=0;c<N;c++){
+  const b=document.createElement('button');b.setAttribute('aria-label',`Rangoli dot row ${r+1} column ${c+1}`);
+  b.onclick=()=>{
+    const off=b.dataset.c===cur;
+    [[r,c],[r,N-1-c],[N-1-r,c],[N-1-r,N-1-c]].forEach(([y,x])=>{
+      const t=cells[y*N+x];if(off){delete t.dataset.c;t.style.background=''}else{t.dataset.c=cur;t.style.background=cur}
+    });
+  };
+  cells.push(b);$('rg').appendChild(b);
+}
+$('clear').onclick=()=>cells.forEach(t=>{delete t.dataset.c;t.style.background=''});
+
+// ---- Float a diya
+$('float').onclick=()=>{
+  const d=document.createElement('span');d.className='fd';
+  d.style.bottom=(14+Math.random()*60)+'px';
+  d.addEventListener('animationend',e=>{if(e.animationName==='drift')d.remove()});
+  $('river').appendChild(d);
+};
+
+// ---- Wishes
+const wishes=[
+ "May your home glow, your table stay full, and your family be close this Tihar.",
+ "May every lamp you light bring someone you love a little closer.",
+ "May Laxmi find your door open and your heart even more so.",
+ "May the sun rise gently on every plan you are carrying.",
+ "May your tika be bright and your bonds be brighter."
+];
+let wi=0;
+$('tk').innerHTML=["#E5195E","#FFB400","#FF3B30","#2e9e4f","#1e88e5","#9c27b0","#FFF6E5"].map(c=>`<i style="background:${c}"></i>`).join('');
+function make(){
+  const n=$('name').value.trim(),card=$('card');
+  $('cn').textContent='Shubha Tihar, '+(n||'dear one')+'!';
+  $('cm').textContent=wishes[wi++%wishes.length];
+  card.classList.remove('show');void card.offsetWidth;card.classList.add('show');
+}
+$('make').onclick=make;$('name').addEventListener('keydown',e=>{if(e.key==='Enter')make()});
+
+// ---- Back to top
+addEventListener('scroll',()=>$('toTop').classList.toggle('on',scrollY>600),{passive:true});
+$('toTop').onclick=()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+</script>
+</body>
+</html>
